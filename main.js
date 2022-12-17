@@ -48,7 +48,7 @@ productNum = document.querySelectorAll('.main__product-num'),
 print = document.querySelector('.receipt '),
 chekList = document.querySelector('.receipt__window'),
 play = document.querySelector('.receipt__window-btn'),
-chekInfo = document.querySelector('.receipt__window-out')
+chekInfo = document.querySelector('.receipt__window-out'),
 productPrice = document.querySelector('.main__product-price');
 
 plus.forEach(btn =>{
@@ -76,7 +76,7 @@ minus.forEach(btnMinus =>{
    function mnus(ell){
         let parent = ell.closest('.main__product'),
         parentId = parent.getAttribute('id')
-        products[parentId].amount--
+        products[parentId].amount < 0 ? products[parentId].amount-- : null
         kcal()
         sum()
         basket()
@@ -175,3 +175,36 @@ play.addEventListener('click', function () {
     chekList.style.top = '-100%'
     
 })
+const mainProductInfo = document.querySelectorAll(".main__product-info"),
+  view = document.querySelector(".view"),
+  viewClose = document.querySelector(".view__close"),
+  viewImg = document.querySelector(".view img");
+
+for (let i = 0; i < mainProductInfo.length; i++) {
+  mainProductInfo[i].addEventListener("dblclick", function () {
+    view.classList.add("active");
+    addImg(this);
+  });
+}
+
+function addImg(btn) {
+  let img = btn.querySelector(".main__product-img"),
+    imgAtt = img.getAttribute("src");
+  viewImg.setAttribute("src", imgAtt);
+}
+viewClose.onclick = () => view.classList.remove("active");
+
+const extra = document.querySelector(".header__timer-extra");
+function number() {
+  extra.innerHTML++;
+  if (extra.innerHTML < 50) {
+    setTimeout(() => {
+      number();
+    }, 10);
+  } else if (extra.innerHTML < 100) {
+    setTimeout(() => {
+      number();
+    }, 150);
+  }
+}
+number()
