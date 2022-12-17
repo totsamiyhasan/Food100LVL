@@ -175,36 +175,36 @@ play.addEventListener('click', function () {
     chekList.style.top = '-100%'
     
 })
-const mainProductInfo = document.querySelectorAll(".main__product-info"),
+const mainInfo = document.querySelectorAll(".main__product-info"),
   view = document.querySelector(".view"),
-  viewClose = document.querySelector(".view__close"),
+  view__exit = document.querySelector(".view__close"),
   viewImg = document.querySelector(".view img");
 
-for (let i = 0; i < mainProductInfo.length; i++) {
-  mainProductInfo[i].addEventListener("dblclick", function () {
+for (let i = 0; i < mainInfo.length; i++) {
+  mainInfo[i].addEventListener("dblclick", function () {
     view.classList.add("active");
-    addImg(this);
+    attImg(this);
   });
 }
 
-function addImg(btn) {
+function attImg(btn) {
   let img = btn.querySelector(".main__product-img"),
     imgAtt = img.getAttribute("src");
   viewImg.setAttribute("src", imgAtt);
 }
-viewClose.onclick = () => view.classList.remove("active");
+view__exit.onclick = () => view.classList.remove("active");
 
-const extra = document.querySelector(".header__timer-extra");
-function number() {
-  extra.innerHTML++;
-  if (extra.innerHTML < 50) {
+const timer = document.querySelector(".header__timer-extra");
+function tim() {
+  timer.innerHTML++;
+  if (timer.innerHTML < 50) {
     setTimeout(() => {
-      number();
+      tim();
     }, 10);
-  } else if (extra.innerHTML < 100) {
+  } else if (timer.innerHTML < 100) {
     setTimeout(() => {
-      number();
+      tim();
     }, 150);
   }
 }
-number()
+tim()
